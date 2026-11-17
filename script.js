@@ -58,6 +58,7 @@ let startTime = 0;
 let hoverModeON = false;
 let isWallBuild = true;
 let positionList = [];
+let errorSignalOn = false;
 
 
 
@@ -68,6 +69,7 @@ let positionList = [];
 
 /// DOM elements and listeners
 const body = document.querySelector('body');
+const errorSignalSwitch = document.querySelector("#error-signal-switch");
 const gameScreen = document.querySelector('#game-screen');
 const gameBoardElement = document.querySelector("#board");
 const gamePlayer = document.querySelector("#game-player");
@@ -99,6 +101,11 @@ function navClick(event){
     showScreen(button.dataset.screen);
 }
 
+errorSignalSwitch.addEventListener('change', errorSignalSetup);
+
+function errorSignalSetup(){
+    errorSignalOn = errorSignalSwitch.checked;
+}
 
 gameBoardElement.addEventListener('mousedown', cellMouseDownHandler);
 
@@ -461,14 +468,18 @@ function checkGameState(){
                 if(area.length < value){
                     markErrorCells(area);
                     hasError = true;
-                    errorMsg.textContent = "Túl kicsi birtok!";
+                    if(errorSignalOn){
+                        errorMsg.textContent = "Túl kicsi birtok!";
+                    }
                 }
 
                 
                 if(houseCount == 1 && area.length > value){
                     markErrorCells(area);
                     hasError = true;
-                    errorMsg.textContent = "Túl nagy birtok!";
+                    if(errorSignalOn){
+                        errorMsg.textContent = "Túl nagy birtok!";
+                    }
                 }
 
                 
@@ -484,7 +495,9 @@ function checkGameState(){
     if(wallBlockCells.length > 0){
         markErrorCells(wallBlockCells);
         hasError = true;
-        errorMsg.textContent = "2×2-es faltömb!";
+        if(errorSignalOn){
+            errorMsg.textContent = "2×2-es faltömb!";
+        }
     }
 
     
