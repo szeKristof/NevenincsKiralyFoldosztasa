@@ -1,0 +1,270 @@
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif;
+  font-size: 16px;
+  background: #f4f1e8;
+  color: #222;
+}
+
+.screen {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 10px;
+}
+
+.hidden {
+  display: none;
+}
+
+button {
+  padding: 8px 16px;
+  cursor: pointer;
+  border-radius: 16px;
+}
+
+button:hover {
+  box-shadow: 0 1px 4px rgb(3, 15, 85, 2);
+}
+
+#start-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 600px;
+}
+
+.menu-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 60px;
+  max-width: 600px;
+}
+
+.table{
+  display: flex;
+  flex-direction: column;
+  width: 90vmin;
+  max-width: 900px;
+  user-select: none;
+}
+
+.table > .row {
+  display: flex;
+  flex-direction: row;
+}
+
+.cell{
+  flex: 1;
+  aspect-ratio: 1;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 5vmin;
+  font-weight: bold;
+  cursor: pointer;
+  background-size: cover;
+  background-position: center;
+}
+
+.cell.house {
+  cursor: default;
+  background-image: url(assets/HOUSE.png);
+  animation: build 0.2s ease-out;
+}
+
+.cell.wall {
+  background-image: url(assets/WALL.png);
+  animation: build 0.2s ease-out;
+}
+
+.cell.field {
+  background-image: url(assets/FIELD.png);
+  animation: destroy 0.2s ease-out;
+}
+
+.cell.signed::after {
+  content: "🚩";
+  font-size: 3vmin;
+  animation: flagDrop 0.35s ease-out;
+}
+
+.cell.error {
+  box-shadow: inset 0 0 0 3px red;
+}
+
+.cell:hover {
+  outline: 2px solid #4a7;
+  outline-offset: -2px;
+}
+
+#game-header {
+  font-size: 16px;
+  width: 90vmin;
+  max-width: 900px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2px;
+  margin-top: 2px;
+  max-height: calc(10vmin - 4px);
+}
+
+#game-header button {
+  padding: 8px 4px;
+  border-radius: 8px;
+}
+
+.won-header {
+  display: none;
+  font-weight: bold;
+  color: rgb(6, 155, 81);
+}
+
+#game-screen.won .won-header {
+  display: flex;
+}
+
+#game-screen.won .normal-header {
+  display: none;
+}
+
+@keyframes winFlash {
+  50% { box-shadow: 0 0 20px 8px rgb(6, 155, 81);}
+}
+
+#game-screen.won #board {
+  border: 3px solid rgb(223, 191, 6);
+  pointer-events: none;
+  animation: winFlash 0.6s;
+}
+
+#error-message {
+  color: #b00020;
+}
+
+#leaderboard ol{
+  width: 85vw;
+  max-width: 400px;
+  padding-inline-start: 0;
+}
+
+
+.score-card {
+  background: #fff;
+  display: flex;
+  justify-content: space-between;
+  border: 2px solid brown;
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.15);
+  margin-bottom: 6px;
+  width: 100%;
+  padding: 8px 16px
+}
+
+.score-card::before {
+  content: "";
+  width: 1.5em;
+  text-align: center;
+}
+
+.score-card:nth-child(1)::before {
+  content: "🥇";
+  border-left: 4px solid rgb(223, 191, 6)
+}
+.score-card:nth-child(2)::before {
+  content: "🥈";
+  border-left: 4px solid transparent;
+}
+.score-card:nth-child(3)::before { 
+  content: "🥉";
+  border-left: 4px solid transparent;
+}
+
+
+#main-screen {
+  background-image: url(assets/FIELD.png);
+  height: 100vh;
+  min-height: 100vh;
+}
+
+#main-wrap {
+  margin: auto;
+  max-width: 420px;
+  background-color: #f4f1e8;
+  border-radius: 16px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.80);
+  text-align: center;
+  padding: 16px;
+  font-size: 20px;
+}
+
+#main-wrap button {
+  background-color:#d9f4f1;
+  color: rgb(3, 15, 85);
+  font-weight: bold;
+  font-size: 20px;
+}
+
+#main-wrap > form > button {
+  font-size: 35px;
+}
+
+#main-wrap > form > button:hover{
+  transform: scale(0.97);
+}
+
+#main-wrap input {
+  padding: 16px;
+  font-size: 25px;
+  border-radius: 16px;
+}
+
+#saved-games {
+  max-width: 400px;
+  list-style-type: "⏸️ ";
+}
+
+#saved-games button{
+  font-weight: bold;
+  background: #fff;
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+  border: 4px solid blue;
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.50);
+  margin-bottom: 6px;
+  width: 100%;
+  padding: 8px 16px
+}
+
+#saved-games button:hover {
+  transform: scale(1.02);
+  background-color: #d9f4f1;
+}
+
+#saved-games button:focus-visible {
+  outline: 3px solid rgb(179, 152, 2);
+  outline-offset: 2px;
+}
+
+@keyframes build {
+  0%   { transform: scale(1.4); opacity: 0; }
+  70%  { transform: scale(0.92); opacity: 1; }
+  100% { transform: scale(1); }
+}
+
+@keyframes destroy {
+  0%   { transform: scale(0.7) rotate(-8deg); filter: brightness(0.5); }
+  100% { transform: scale(1) rotate(0); filter: brightness(1); }
+}
+
+@keyframes flagDrop {
+  0%   { transform: translateY(-60%) scale(1.8); opacity: 0; }
+  60%  { transform: translateY(0) scale(0.9) rotate(-12deg); opacity: 1; }
+  80%  { transform: rotate(6deg); }
+  100% { transform: rotate(0); }
+}

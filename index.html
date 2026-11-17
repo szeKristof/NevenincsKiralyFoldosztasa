@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nevenincs király földosztása</title>
+  <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  
+  <section id="main-screen" class="screen">
+    <div id="main-wrap">
+    <h2>🤴🏼Nevenincs király földosztása🧑‍🌾</h2>
+    <form id="start-form">
+      
+      <input type="text" id="player-name" name="playerName" required placeholder="Név">
+
+      <fieldset>
+        <legend>Nehézség</legend>
+        <label><input type="radio" name="level" value="easy" checked> Könnyű</label>
+        <label><input type="radio" name="level" value="medium"> Közepes</label>
+        <label><input type="radio" name="level" value="hard"> Nehéz</label>
+      </fieldset>
+
+      <button type="submit">Új játék indítása</button>
+    </form>
+
+    <nav class="menu-nav">
+      <button type="button" data-screen="rules-screen">Játékszabályok</button>
+      <button type="button" data-screen="saves-screen">Korábbi játék betöltése</button>
+      <button type="button" data-screen="leaderboard-screen">A király dicsőségkönyve</button>
+    </nav>
+
+    </div>
+  </section>
+
+  <section id="rules-screen" class="screen">
+    <h2>📜 Játékszabályok</h2>
+
+    <p>
+      Nekeresdország egyik falujában a lakók igazságosan szeretnék felosztani a földeket.
+      Nevenincs király úgy rendelkezett, hogy minden házhoz pontosan annyi földterület tartozzon,
+      ahányan benne laknak, a birtokokat pedig falak válasszák el egymástól.
+      Segíts Furfang tanácsosnak igazságosan felosztani a földeket!
+    </p>
+
+    <h3>🎯 A játék célja</h3>
+    <p>
+      A táblán házak állnak, mindegyiken egy szám: ennyien laknak benne.
+      Falak építésével oszd fel a területet úgy, hogy minden ház pontosan akkora
+      összefüggő birtokot kapjon, amekkora a rajta lévő szám.
+    </p>
+
+    <h3>🏆 Győzelmi feltételek</h3>
+    <ol>
+      <li><strong>Megfelelő méret:</strong> minden birtok pontosan annyi mezőből áll, amennyi a ház száma. A ház mezője is beleszámít.</li>
+      <li><strong>Összefüggő birtok:</strong> egy birtok mezői oldalukkal kapcsolódnak egymáshoz, az átlós érintkezés nem számít.</li>
+      <li><strong>Egy ház birtokonként:</strong> minden birtokon pontosan egy ház áll.</li>
+      <li><strong>Elválasztott birtokok:</strong> két birtok oldalával nem érintkezhet, köztük falnak kell lennie. Sarokkal érintkezhetnek.</li>
+      <li><strong>Összefüggő falak:</strong> a falak egyetlen, oldalukkal összekapcsolódó hálózatot alkotnak.</li>
+      <li><strong>Nincs faltömb:</strong> a falak sehol sem tölthetnek ki egy teljes 2×2-es területet.</li>
+    </ol>
+
+    <h3>🎮 Irányítás</h3>
+    <ul>
+      <li><strong>Bal kattintás:</strong> fal építése, illetve egy meglévő fal lebontása.</li>
+      <li><strong>Bal gomb nyomva tartása és húzás:</strong> több mező egyszerre. Ha falon kezded, bontasz, különben építesz.</li>
+      <li><strong>Jobb kattintás:</strong> megjelölheted azokat a mezőket, amelyekről biztosan tudod, hogy nem lesz rajtuk fal. Újabb jobb kattintással a jelölés eltűnik. A jelölés csak segítség, a megoldásba nem számít bele.</li>
+      <li>A házakat tartalmazó mezők nem módosíthatók.</li>
+    </ul>
+
+    <h3>⚠️ Hibajelzések</h3>
+    <p>A játék piros kiemeléssel azonnal jelzi, ha:</p>
+    <ul>
+      <li>egy falakkal körülzárt birtok <strong>túl kicsi</strong> a házhoz,</li>
+      <li>egy birtok <strong>túl nagy</strong> a házhoz,</li>
+      <li>a falak egy <strong>2×2-es tömböt</strong> alkotnak.</li>
+    </ul>
+
+    <button type="button" data-screen="main-screen">⬅️ Vissza</button>
+  </section>
+
+  
+  <section id="saves-screen" class="screen">
+    <ul id="saved-games"></ul>
+    <button type="button" data-screen="main-screen">⬅️ Vissza</button>
+  </section>
+
+
+  
+  <section id="leaderboard-screen" class="screen">
+    <div id="leaderboard"></div>
+    <button type="button" data-screen="main-screen">⬅️ Vissza</button>
+  </section>
+
+
+  
+  <section id="game-screen" class="screen">
+    <header id="game-header">
+        <span class="won-header">GYŐZELEM!!! 🎉</span>
+        <span>Név:  <strong id="game-player"></strong></span>
+        <span>Pálya: <strong id="game-level"></strong>   </span>
+        <span>Idő: <strong id="game-time"></strong>      </span>
+        <span><button class="normal-header" type="button" id="save-btn" data-screen="main-screen">Mentés💾</button><button type="button" id="menu-btn" data-screen="main-screen">Főmenü🏠</button> </span>
+    </header>
+    <p id="error-message"></p>
+    <div id="board" class="table"></div>
+  </section>
+
+
+  <script src="script.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
